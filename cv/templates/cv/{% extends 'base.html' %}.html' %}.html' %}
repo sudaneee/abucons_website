@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static custom_filters %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Curriculum Vitae Submission</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" id="cvForm">
+                {% csrf_token %}
+
+                <!-- Personal Information Section -->
+                <h5 class="mb-3 border-bottom pb-2">Personal Information</h5>
+                <div class="row">
+                    {% for field in cv_form.visible_fields %}
+                        <div class="col-md-6 mb-3">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.errors %}<div class="text-danger">{{ field.errors }}</div>{% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Ordered formsets using formset_order -->
+                {% for name in formset_order %}
+                    {% with formset=formsets|get_item:name %}
+                    <div class="form-section mb-5" id="{{ name }}Forms">
+                        <h5 class="mt-4 border-bottom pb-2">{{ display_names|get_item:name }}</h5>
+                        {{ formset.management_form }}
+                        
+                        {% for form in formset.forms %}
+                            <div class="border p-3 mb-3 {{ name }}-form">
+                                <div class="row">
+                                    {% for field in form.visible_fields %}
+                                        <div class="col-md-6 mb-3">
+                                            {{ field.label_tag }}
+                                            {{ field }}
+                                            {% if field.errors %}<div class="text-danger">{{ field.errors }}</div>{% endif %}
+                                        </div>
+                                    {% endfor %}
+                                    {% if formset.can_delete %}
+                                        <div class="col-md-6 mb-3 d-flex align-items-end">
+                                            <div class="form-check">
+                                                {{ form.DELETE }}
+                                                <label class="form-check-label" for="{{ form.DELETE.id_for_label }}">
+                                                    Mark for deletion
+                                                </label>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+                            </div>
+                        {% endfor %}
+
+                        <!-- Empty form template for dynamic addition -->
+                        <div id="empty-{{ name }}-form" style="display: none;">
+                            {% with formset.empty_form as empty_form %}
+                                <div class="{{ name }}-form">
+                                    <div class="row">
+                                        {% for field in empty_form.visible_fields %}
+                                            <div class="col-md-6 mb-3">
+                                                {{ field.label_tag }}
+                                                {{ field }}
+                                            </div>
+                                        {% endfor %}
+                                        {% if formset.can_delete %}
+                                            <div class="col-md-6 mb-3 d-flex align-items-end">
+                                                <div class="form-check">
+                                                    {{ empty_form.DELETE }}
+                                                    <label class="form-check-label" for="{{ empty_form.DELETE.id_for_label }}">
+                                                        Mark for deletion
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    {% for hidden in empty_form.hidden_fields %}{{ hidden }}{% endfor %}
+                                </div>
+                            {% endwith %}
+                        </div>
+
+                        <button type="button" class="btn btn-sm btn-outline-primary add-form" data-prefix="{{ name }}">
+                            <i class="fas fa-plus"></i> Add {{ display_names|get_item:name|slice:":-1" }}
+                        </button>
+                    </div>
+                    {% endwith %}
+                {% endfor %}
+
+                <div class="text-end mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-save"></i> Submit CV
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+// JavaScript for dynamic form addition (keep your existing script or add this)
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.add-form').forEach(button => {
+        button.addEventListener('click', function() {
+            const prefix = this.dataset.prefix;
+            const formContainer = document.getElementById(`${prefix}Forms`);
+            const totalForms = document.getElementById(`id_${prefix}-TOTAL_FORMS`);
+            const emptyForm = document.getElementById(`empty-${prefix}-form`).innerHTML;
+            
+            const newForm = document.createElement('div');
+            newForm.innerHTML = emptyForm.replace(/__prefix__/g, totalForms.value);
+            formContainer.insertBefore(newForm, this);
+            
+            totalForms.value = parseInt(totalForms.value) + 1;
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,17 @@
+1. Typing for Searching Units
+2. Language (5 fields at Start)
+2. Resource Persons' CV template
+3. Tertiary EDUCATION (BSC MSC PHD PGD) (5 FIELDS)
+4. addtional qualification (qualification/certification)
+5. Training and workshops (Check box for tranee & resource Person) (2015 to date)
+6. Key Reserach Areas (5 max)
+7. Patent (if Any)
+8. grants (Title case)
+9. Projects Participated in your Discipline (2015 to date)
+10. Nationality
+11. DOB<->Age Bracket
+12. Employement History
+13. Contact Address
+14. Mother Tongue
+15. Language Proficiency (Poor, Fair & Good)
+16. Client (projects)

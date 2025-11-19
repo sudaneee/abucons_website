@@ -1,0 +1,24 @@
+{% extends "cv/base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6 text-center">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4>Submission Successful!</h4>
+            </div>
+            <div class="card-body p-5">
+                <div class="mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="var(--abu-green)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                </div>
+                <h3 class="mb-3">Thank You!</h3>
+                <p class="lead mb-4">Your CV has been successfully submitted to ABUCONS.</p>
+                <p>You will receive a confirmation email shortly. If you need to make any changes, please contact the ABUCONS office.</p>
+                <a href="/" class="btn btn-abu mt-4">Return to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

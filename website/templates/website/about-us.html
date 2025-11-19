@@ -1,0 +1,240 @@
+	
+    {% extends 'website/partials/base.html' %}
+    {% load static %}
+    {% block content %}
+    
+    
+        <!-- Main Header-->
+        {% include 'website/partials/header.html'%}
+    
+	
+	<!-- START PAGE BANNER AND BREADCRUMBS -->
+	<section id="page-banner">
+		<div class="single-page-title-area overlay" data-background="{{breadcumb.image.url}}">
+			<div class="auto-container">
+				<div class="row">
+					<div class="col-12 text-center">
+						<div class="single-page-title">
+							<h2>About Us</h2>
+							<p></p>
+						</div>
+					</div>
+				</div>
+				<!-- end row-->
+			</div>
+		</div>
+		<div class="single-page-title-area-bottom">
+			<div class="auto-container">
+				<div class="row">
+					<div class="col-12 text-center">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+							<li class="breadcrumb-item active">about us</li>
+						</ol>
+					</div>
+				</div>
+				<!-- end row-->
+			</div>
+		</div>
+	</section>
+	<!-- END PAGE BANNER AND BREADCRUMBS -->
+    <!-- START ABOUT SECTION -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row">
+				<div class="col-lg-12 col-md-12 col-12">
+					<div class="row">
+						<div class="col-12 text-left">
+							<div class="section-title-2">
+								<h3>About <span>Us</span></h3>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-12">
+							<!-- end section title -->
+							<div class="image-style-1 mb-4">
+								<div class="image-style-wrapper">
+									<div class="image-one"></div>
+									<div class="image-two">
+										<img src="{{md.image.url}}" class="img-fluid" alt="">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-12 pt-4 text-justify">
+									<h2>Misson:</h2>
+									<p>
+										Our mission istoutilize available human and material resourcestoprovide value-driven results to our:
+									</p>
+
+									<div>
+										<ul>
+											<li><span class="font-weight-bold">Clients:</span> Offer value-added and cost-effective services to improve our client’s performance.</li>
+											<li><span class="font-weight-bold">Industry:</span> Improve current practices and identify new means, methods and technologies for industry professionals to follow.</li>
+											<li><span class="font-weight-bold">Community/Society:</span> Seek opportunities to work for worthy causes within our immediate communities and Nigeria at large. </li>
+											<li><span class="font-weight-bold">Employees:</span> Committed to creating unparalleled opportunities for personal growth for employees and associates within a stable and rewarding work environment.</li>
+											<li><span class="font-weight-bold">Partners:</span> Create opportunities for our partners to grow along with us.</li>
+										</ul>
+									</div>
+									
+								</div>
+								<div class="col-lg-12 col-md-12 col-12 pt-4 text-justify">
+									<h2>Vission:</h2>
+									<p>
+										Our vision is to be a world leading consulting organization involved in research and training to help our clients from public, private and not-for-profit sectors in all regions to identify their highest-value opportunities, address their critical challenges and improve their efficiency and effectiveness’
+									</p>
+								</div>
+
+							</div>
+						</div>
+						
+						<div class="col-lg-6 col-md-6 col-12">
+							<div class="promo-content">
+								<h4>Who we are?</h4>
+								<p class="text-justify">{{data.preamble}}</p>
+								{% comment %} <a href="{% url 'construction' %}" class="btn-style btn-filled mt-3">Read More <i class="icofont icofont-caret-right"></i></a> {% endcomment %}
+								
+							</div>	
+						</div>
+					</div>
+
+				</div>
+				<!-- end col -->
+                <div class="col-12 text-center">
+                    <div class="section-title">
+                        
+                        <h3>Our <span>Features</span></h3>
+                    </div>
+                </div>
+            </div>
+            <!-- end section title -->
+            <div class="row text-center">
+                {% for i in features %}
+                <div class="single-about-item col-lg-4 col-md-4 col-sm-12 col-12 mb-lg-0 mb-md-4 mb-sm-4 mb-4">
+                    <div class="single-about">
+                        <div class="single-about-img">
+                            <div class="single-about-img-inner">
+                                <a href="{% url 'construction' %}"><img src="{{data.footer_logo.url}}" class="img-fluid" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="single-about-caption">
+                            <div class="single-about-icon">
+                                <i class="fas {{i.icon}}"></i>
+                            </div>
+                            <div class="single-about-title">
+                                <h5>{{i.title}}</h5>
+                            </div>
+                            <div class="single-about-dec">
+                                <p>{{i.content}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end single about -->
+                {% endfor %}
+
+            </div>
+        </div>
+        <!--- END CONTAINER -->
+    </section>
+    <!-- END ABOUT SECTION -->  
+	
+	<!-- START TEAM SECTION -->
+    <section id="team" class="section-padding bg-gray">
+        <div class="container">
+			<div class="row">
+				<div class="col-12 text-center">
+					<div class="section-title">
+						<h5>our team</h5>
+						<h3>ABUCONS <span>Team</span></h3>
+					</div>
+				</div>
+			</div>
+			<!-- end section title -->	 
+			<div class="row text-center">
+				<div class="team-slider owl-carousel owl-theme">
+					{% for i in staff %}
+					<div class="single-team-wrapper">
+						<div class="single-team">
+							<div class="single-team-img">
+								<img class="img-fluid" src="{{i.image.url}}" alt="">
+								<div class="single-team-social">
+									<ul>
+									   <li><a class="sicon1" href="{% url 'construction' %}"><i class="icofont icofont-social-facebook"></i></a></li>
+									   <li><a class="sicon2" href="{% url 'construction' %}"><i class="icofont icofont-social-twitter"></i></a></li>
+									   <li><a class="sicon3" href="{% url 'construction' %}"><i class="icofont icofont-social-youtube-play"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="single-team-meta">
+								<h4>{{i.name}}</h4>
+								<span>{{i.designation}}</span>
+								<p></p>
+							</div>	
+						</div>							
+					</div>
+					<!-- end col -->
+					{% endfor %}
+
+				</div>
+			</div>
+			<!-- end row -->
+        </div>
+        <!--- END CONTAINER -->
+    </section>
+    <!-- END TEAM SECTION -->
+	<!-- START TESTIMONIAL SECTION -->
+    <section id="testimonial" class="section-padding">
+        <div class="container">
+			<div class="row">
+				<div class="col-12 text-center">
+					<div class="section-title">
+						<h5>our achievements</h5>
+						<h3>Client <span>Feedback</span></h3>
+					</div>
+				</div>
+			</div>
+			<!-- end section title -->
+			<div class="testimonial-wrapper bg-gray-2 section-padding">
+				<div class="row">
+					<div class="col-lg-12 mx-lg-auto mx-md-auto mx-0 text-center">
+						<div class="testimonial-slider owl-carousel owl-theme">
+							<div class="single-testimonial">
+								<div class="single-testimonial-image">
+									<img class="img-fluid rounded-circle" src="https://scontent.fabv3-1.fna.fbcdn.net/v/t39.30808-1/421269500_3186622991469679_4225994950506819070_n.jpg?stp=c0.0.200.200a_dst-jpg_p200x200&_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGAE6dwI73Gz-ki1eZebcSHnqlJFoSLToSeqUkWhItOhOYsdlBXonCNXh6x6nL_CPhGBTivJn5rwIqIRsypcGsB&_nc_ohc=Cnv3qIZ2biUQ7kNvgHcXWsf&_nc_ht=scontent.fabv3-1.fna&oh=00_AYCvjUT_Tdsfoy06N2EbinUhV9SbSTAZBOJgHkBNPSW0kQ&oe=664D16FA" alt="">
+								</div>
+								<div class="single-testimonial-content">
+									<p>ABUCONS has been an invaluable partner in transforming our projects into successful ventures. Their expert team consistently delivers innovative, cost-effective solutions that exceed expectations. Highly recommended!</p>
+								</div>
+								<div class="single-testimonial-meta">
+									<p>- Mr. Emmanual Gana</p>
+								</div>
+							</div>
+							<!-- end single testimonial -->
+							<div class="single-testimonial">
+								<div class="single-testimonial-image">
+									<img class="img-fluid rounded-circle" src="https://scontent.fabv3-2.fna.fbcdn.net/v/t1.6435-9/200252211_1923925374438362_911102813865535874_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFWq6sVHeoMCxN2hVbV420bbfJwuNPTHx9t8nC409MfH0jBBhB9elZMomUQLHIBPlLfx7h5HqCL_7pmRevIPEA4&_nc_ohc=cFfYdcQqZTgQ7kNvgEre_VA&_nc_ht=scontent.fabv3-2.fna&oh=00_AYCZRSGZDVv-d6MxGMbraAngJbBPozSZ32pWFH6dzWeD7g&oe=666EB3CF" alt="">
+								</div>
+								<div class="single-testimonial-content">
+									<p>The professionalism and dedication demonstrated by ABUCONS in every phase of our collaboration have been exceptional. Their tailored services and deep industry knowledge have greatly contributed to the success of our projects.</p>
+								</div>
+								<div class="single-testimonial-meta">
+									<p>- Alh. Abdulhafeez Taiwo</p>
+								</div>
+							</div>
+							<!-- end single testimonial -->
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+        <!--- END CONTAINER -->
+    </section>
+    <!-- END TESTIMONIAL SECTION -->
+
+
+    <!--Main Footer-->
+    {% include 'website/partials/footer.html' %}
+	
+{%endblock content%}
